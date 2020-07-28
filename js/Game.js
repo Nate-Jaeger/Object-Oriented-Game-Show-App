@@ -25,7 +25,16 @@ class Game {
     * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase(){
-        let randomNumber = Math.floor(Math.random() * this.phrases.length);
-        return this.phrases[randomNumber];
+        let ranNum = Math.floor(Math.random() * this.phrases.length);
+        return this.phrases[ranNum];
     };
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame(){
+        //hides the start screen overlay (the `div` element with an `id` of`overlay`)
+        document.querySelector('#overlay').style.display = 'none';
+        //calls the `getRandomPhrase()`
+    }
 }
