@@ -31,13 +31,21 @@ class Game {
 
    /**
     * Begins game by selecting a random phrase and displaying it to user
+	 * Clears previous game and resets keyboard
     */
    startGame() {
-      //Hide the start screen overlay
+		//Reset li,keyboard, and heart elements
+		document.querySelectorAll('.letter').forEach(letter => letter.remove());
+		document.querySelectorAll('.key').forEach(key => {
+			key.disabled = false;
+			key.classList = 'key';
+		});
+		document.querySelectorAll('.tries img')
+				  .forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
+
+		//Make game playable
 		document.querySelector("#overlay").style.display = "none";
-		//Clear classes so we can apply win/lose classes later
 		document.querySelector("#overlay").classList = '';
-      //Call addPhraseToDisplay on the active phrase
       this.activePhrase.addPhraseToDisplay();
 	}
 	
