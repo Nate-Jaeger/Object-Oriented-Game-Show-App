@@ -37,5 +37,21 @@ class Game {
       document.querySelector("#overlay").style.display = "none";
       //Call addPhraseToDisplay on the active phrase
       this.activePhrase.addPhraseToDisplay();
-   }
+	}
+	
+	/**
+	* Checks for winning move
+	* @return {boolean} True if game has been won, false if game wasn't
+	won
+	*/
+	checkForWin(){
+		//Collect all LI elements with class of hide and letter
+		const unrevealedLetters = document.querySelectorAll('li.hide.letter');
+		//Ternary to check length of unreaveledLetters. Return true if 0
+		return unrevealedLetters.length === 0 ? true : false;
+	}
+
+	removeLife(){
+		
+	}
 }
