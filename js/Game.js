@@ -43,7 +43,7 @@ class Game {
 		document.querySelectorAll('.tries img')
 				  .forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
 
-		//Make game playable
+		//Clear overlay screen / Add new phrase to screen
 		document.querySelector("#overlay").style.display = "none";
 		document.querySelector("#overlay").classList = '';
       this.activePhrase.addPhraseToDisplay();
@@ -65,14 +65,10 @@ class Game {
 	* Checks if player has remaining lives and ends game if player is out
 	*/
 	removeLife(){
-		//Increase missed tries by 1
 		this.missed += 1;
 
-		//Collect all of the liveHeart icons on screen
 		let tries = document.querySelectorAll('img[src="images/liveHeart.png"]');
 		let heart = tries[0];
-
-		//Replace liveHeart img with lostHeart image
 		heart.setAttribute("src", "images/lostHeart.png");
 
 		//Check if player missed 5 times, if so call the gameOver method
@@ -86,17 +82,11 @@ class Game {
 	gameOver(gameWon){
 		const overlay = document.querySelector('#overlay');
 		const title = document.querySelector('#game-over-message');
-		//Show game overlay screen
 		overlay.style.display = "";
 
-		if (gameWon){
-			//Update H2 tag to tell user they won
-			title.textContent = "Congratulations, you won!";
-			overlay.classList.add("win");
-		} else {
-			title.textContent = "Better luck next time!";
-			overlay.classList.add("lose");
-		}
+		//Add appropriate text to title and class to overlay
+		title.textContent = gameWon ? "Congratulations, you won!" : "Better luck next time!";
+		overlay.classList.add(gameWon ? "win" : "lose");
 	}
 
 	/**
@@ -104,7 +94,6 @@ class Game {
 	* @param (HTMLButtonElement) button - The clicked button element
 	*/
 	handleInteraction(button) {
-		//Disable clicked button
 		button.disabled = true;
 
 		//If button pressed is contained in the active phrase
