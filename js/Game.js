@@ -47,9 +47,7 @@ class Game {
 	won
 	*/
 	checkForWin(){
-		//Collect all LI elements with class of hide and letter
 		const unrevealedLetters = document.querySelectorAll('li.hide.letter');
-		//Ternary to check length of unreaveledLetters. Return true if 0
 		return unrevealedLetters.length === 0 ? true : false;
 	}
 
@@ -70,7 +68,7 @@ class Game {
 		heart.setAttribute("src", "images/lostHeart.png");
 
 		//Check if player missed 5 times, if so call the gameOver method
-		this.missed === 5 ? this.gameOver() : false;
+		this.missed === 5 ? this.gameOver(false) : null;
 	}
 
 	/**
@@ -79,16 +77,16 @@ class Game {
 	*/
 	gameOver(gameWon){
 		const overlay = document.querySelector('#overlay');
-		const title = document.querySelector('.title');
+		const title = document.querySelector('#game-over-message');
 		//Show game overlay screen
 		overlay.style.display = "";
 
 		if (gameWon){
 			//Update H2 tag to tell user they won
-			title.textContent = "You Won!";
+			title.textContent = "Congratulations, you won!";
 			overlay.classList.add("win");
 		} else {
-			title.textContent = "You Lost";
+			title.textContent = "Better luck next time!";
 			overlay.classList.add("lose");
 		}
 	}
@@ -98,6 +96,19 @@ class Game {
 	* @param (HTMLButtonElement) button - The clicked button element
 	*/
 	handleInteraction(button) {
-		console.log(button);
-	};
+		//Disable clicked button
+		button.disabled = true;
+
+		//If button pressed is contained in the active phrase
+		if (this.activePhrase.checkLetter(button.textContent)){
+			button.classList.add("chosen");
+			this.activePhrase.showMatchedLetter(button.textContent);
+
+			//Ternary to check if game was won, if so call gameOver w/ true value
+			this.checkForWin() ? this.gameOver(true) : null;
+		} else {
+			button.classList.add("wrong");
+			this.removeLife();
+		}
+	}
 }
