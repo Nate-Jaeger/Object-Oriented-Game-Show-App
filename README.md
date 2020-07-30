@@ -3,3 +3,5 @@
     
  A word guessing game made with OOP principles
 
+ -Style changes:
+    

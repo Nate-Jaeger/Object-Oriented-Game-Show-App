@@ -9,7 +9,6 @@ class Phrase {
    addPhraseToDisplay() {
       const phraseUL = document.querySelector("#phrase ul");
 
-      //Loop over phrase string
       for (const letter of this.phrase) {
          //Create, append, and set text for letter LI's
          let li = document.createElement("li");

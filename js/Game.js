@@ -30,8 +30,8 @@ class Game {
    }
 
    /**
-    * Begins game by selecting a random phrase and displaying it to user
 	 * Clears previous game and resets keyboard
+    * Begins game by selecting a random phrase and displaying it to user
     */
    startGame() {
 		//Reset li,keyboard, and heart elements
@@ -42,7 +42,7 @@ class Game {
 		});
 		document.querySelectorAll('.tries img')
 				  .forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
-
+				  
 		//Clear overlay screen / Add new phrase to screen
 		document.querySelector("#overlay").style.display = "none";
 		document.querySelector("#overlay").classList = '';
@@ -96,12 +96,12 @@ class Game {
 	handleInteraction(button) {
 		button.disabled = true;
 
-		//If button pressed is contained in the active phrase
+		//Check if letter is in activePhrase
 		if (this.activePhrase.checkLetter(button.textContent)){
 			button.classList.add("chosen");
 			this.activePhrase.showMatchedLetter(button.textContent);
 
-			//Ternary to check if game was won, if so call gameOver w/ true value
+			//Check for win
 			this.checkForWin() ? this.gameOver(true) : null;
 		} else {
 			button.classList.add("wrong");
