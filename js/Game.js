@@ -35,6 +35,7 @@ class Game {
    startGame() {
       //Hide the start screen overlay
 		document.querySelector("#overlay").style.display = "none";
+		//Clear classes so we can apply win/lose classes later
 		document.querySelector("#overlay").classList = '';
       //Call addPhraseToDisplay on the active phrase
       this.activePhrase.addPhraseToDisplay();
@@ -81,7 +82,6 @@ class Game {
 		const title = document.querySelector('.title');
 		//Show game overlay screen
 		overlay.style.display = "";
-		overlay.classList.remove("start");
 
 		if (gameWon){
 			//Update H2 tag to tell user they won
@@ -92,4 +92,12 @@ class Game {
 			overlay.classList.add("lose");
 		}
 	}
+
+	/**
+	* Handles onscreen keyboard button clicks
+	* @param (HTMLButtonElement) button - The clicked button element
+	*/
+	handleInteraction(button) {
+		console.log(button);
+	};
 }
