@@ -34,7 +34,8 @@ class Game {
     */
    startGame() {
       //Hide the start screen overlay
-      document.querySelector("#overlay").style.display = "none";
+		document.querySelector("#overlay").style.display = "none";
+		document.querySelector("#overlay").classList = '';
       //Call addPhraseToDisplay on the active phrase
       this.activePhrase.addPhraseToDisplay();
 	}
@@ -51,7 +52,44 @@ class Game {
 		return unrevealedLetters.length === 0 ? true : false;
 	}
 
+	/**
+	* Increases the value of the missed property
+	* Removes a life from the scoreboard
+	* Checks if player has remaining lives and ends game if player is out
+	*/
 	removeLife(){
-		
+		//Increase missed tries by 1
+		this.missed += 1;
+
+		//Collect all of the liveHeart icons on screen
+		let tries = document.querySelectorAll('img[src="images/liveHeart.png"]');
+		let heart = tries[0];
+
+		//Replace liveHeart img with lostHeart image
+		heart.setAttribute("src", "images/lostHeart.png");
+
+		//Check if player missed 5 times, if so call the gameOver method
+		this.missed === 5 ? this.gameOver() : false;
+	}
+
+	/**
+	* Displays game over message
+	* @param {boolean} gameWon - Whether or not the user won the game
+	*/
+	gameOver(gameWon){
+		const overlay = document.querySelector('#overlay');
+		const title = document.querySelector('.title');
+		//Show game overlay screen
+		overlay.style.display = "";
+		overlay.classList.remove("start");
+
+		if (gameWon){
+			//Update H2 tag to tell user they won
+			title.textContent = "You Won!";
+			overlay.classList.add("win");
+		} else {
+			title.textContent = "You Lost";
+			overlay.classList.add("lose");
+		}
 	}
 }
