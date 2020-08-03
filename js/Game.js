@@ -36,13 +36,14 @@ class Game {
    startGame() {
 		//Reset li,keyboard, and heart elements
 		document.querySelectorAll('.letter').forEach(letter => letter.remove());
+		document.querySelectorAll('.space').forEach(space => space.remove());
 		document.querySelectorAll('.key').forEach(key => {
 			key.disabled = false;
 			key.classList = 'key';
 		});
 		document.querySelectorAll('.tries img')
 				  .forEach(heart => heart.setAttribute("src", "images/liveHeart.png"));
-				  
+
 		//Clear overlay screen / Add new phrase to screen
 		document.querySelector("#overlay").style.display = "none";
 		document.querySelector("#overlay").classList = '';
