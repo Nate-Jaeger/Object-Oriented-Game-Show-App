@@ -2,7 +2,7 @@ class Game {
    constructor() {
       this.missed = 0;
       this.phrases = this.createPhrases();
-      this.activePhrase = this.getRandomPhrase();
+      this.activePhrase = null;
    }
 
    /**
@@ -46,6 +46,7 @@ class Game {
 		//Clear overlay screen / Add new phrase to screen
 		document.querySelector("#overlay").style.display = "none";
 		document.querySelector("#overlay").classList = '';
+		this.activePhrase = this.getRandomPhrase();
       this.activePhrase.addPhraseToDisplay();
 	}
 	
