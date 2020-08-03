@@ -28,6 +28,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: antiquewhite;
 }
 
 li, ol, ul {
@@ -100,7 +101,8 @@ button {
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
-  border-radius: 5px;
+  border-radius: 3px;
+  border: 1px solid black;
 }
 
 .space {
@@ -124,6 +126,10 @@ button {
 
 
 /* Keyboard */
+
+.key {
+  box-shadow: 3px 3px;
+}
 
 .keyrow {
   display: flex;

@@ -7,5 +7,6 @@
 -Enter key will initiate a new game
 
  -Style changes:
+    -Box-Shadow added to keyboad keys
     -
     
